@@ -1,0 +1,6 @@
+.background-image {
+    background-image: url("../Images/ingredient-search-background.jpg");
+    padding: 50px 0 50px 0;
+    height: 400px;
+    background-size: 100% 
+}
