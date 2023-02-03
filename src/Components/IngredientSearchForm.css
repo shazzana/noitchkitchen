@@ -1,6 +1,48 @@
-.background-image {
+.Form {
     background-image: url("../Images/ingredient-search-background.jpg");
-    padding: 50px 0 50px 0;
-    height: 400px;
-    background-size: 100% 
+    height: 700px;
+    background-position: center;
+    font-family: 'League Spartan', sans-serif;
+    display: block;
+    text-align: center;
 }
+
+.Form-text{
+    text-align: center;
+    padding: 200px 0 0 0;
+    color: white;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.Form-para {
+    text-align: center;
+    padding: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+.Form-container {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.Form-field {
+    width: 300px;
+}
+
+
+/* .Form-header {
+    
+    background-size: 100%; 
+    background-repeat: no-repeat;
+} */
+
+/* object-fit: fill;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center; */
