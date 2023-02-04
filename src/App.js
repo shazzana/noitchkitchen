@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <div className="App">
       <Navbar bg="light">
         <Container>
           <Navbar.Brand href="#home">
