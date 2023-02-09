@@ -2,7 +2,11 @@ import React from 'react';
 
 function SearchResultDisplay() {
     return (
-        <h1>Search Results</h1>
+        <div>
+            <br/>
+            <h1>Search Results</h1>
+        </div>
+        
     )
 }
 
