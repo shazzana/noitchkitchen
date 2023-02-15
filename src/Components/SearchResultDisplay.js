@@ -1,11 +1,12 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
 
-function SearchResultDisplay() {
+function SearchResultDisplay(props) {
+  const handleClick = (event) => {
+    console.log("Button clicked!");
+  };
 
-    const handleClick = (event) => {
-        console.log("Button clicked!");
-    }
+
 
   return (
     <div>
@@ -42,7 +43,7 @@ function SearchResultDisplay() {
             </td>
             <td>3</td>
             <td>
-                <i class="fa-solid fa-circle-plus" onClick={handleClick}></i>
+              <i class="fa-solid fa-circle-plus" onClick={handleClick}></i>
             </td>
           </tr>
           <tr>
@@ -61,13 +62,13 @@ function SearchResultDisplay() {
       </Table>
       <Table striped bordered>
         <thead>
-            <tr>
-                <td colSpan={4}>Mechanisms affecting histamine metabolism</td>
-                <td colSpan={4}>Histamine Compatibility Scale</td>
-            </tr>
+          <tr>
+            <td colSpan={4}>Mechanisms affecting histamine metabolism</td>
+            <td colSpan={4}>Histamine Compatibility Scale</td>
+          </tr>
         </thead>
         <tbody>
-        <tr>
+          <tr>
             <td colSpan={2}>Histamine</td>
             <td colSpan={2}>High histamine content</td>
             <td colSpan={2}>0</td>
@@ -80,8 +81,8 @@ function SearchResultDisplay() {
             <td colSpan={2}>Other biogenic amines</td>
             <td colSpan={2}>1</td>
             <td colSpan={2}>
-            Moderately compatible, minor symptoms, occasional 
-            consumption of small quantities is often tolerated 
+              Moderately compatible, minor symptoms, occasional consumption of
+              small quantities is often tolerated
             </td>
           </tr>
           <tr>
@@ -89,35 +90,32 @@ function SearchResultDisplay() {
             <td colSpan={2}>Histamine liberators</td>
             <td colSpan={2}>2</td>
             <td colSpan={2}>
-            Incompatible, significant symptoms at usual intake
+              Incompatible, significant symptoms at usual intake
             </td>
           </tr>
           <tr>
             <td colSpan={2}>Blockers</td>
-            <td colSpan={2}>Inhibitors of diamine oxidase and other histamine degrading enzymes</td>
-            <td colSpan={2}>3</td>
             <td colSpan={2}>
-            Very poorly tolerated, severe symptoms
+              Inhibitors of diamine oxidase and other histamine degrading
+              enzymes
             </td>
+            <td colSpan={2}>3</td>
+            <td colSpan={2}>Very poorly tolerated, severe symptoms</td>
           </tr>
           <tr>
             <td colSpan={2}></td>
             <td colSpan={2}></td>
             <td colSpan={2}>-</td>
-            <td colSpan={2}>
-            No general statement possible
-            </td>
+            <td colSpan={2}>No general statement possible</td>
           </tr>
           <tr>
-          <td colSpan={2}></td>
+            <td colSpan={2}></td>
             <td colSpan={2}></td>
             <td colSpan={2}>?</td>
-            <td colSpan={2}>
-            Insufficient or contradictory information
-            </td>
+            <td colSpan={2}>Insufficient or contradictory information</td>
           </tr>
         </tbody>
-        </Table>
+      </Table>
     </div>
   );
 }

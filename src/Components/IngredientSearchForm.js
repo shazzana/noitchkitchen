@@ -19,8 +19,12 @@ function IngredientSearchForm(props) {
         event.preventDefault();
         const val = formInput; //Getting the value from the state
         console.log('STATE: formInput:', val)
-        // props.onHandleSubmit(val)
+        if (val !== "") {
         navigate('/search');
+        } else {
+            alert ("Please type in an ingredient")
+        }
+        props.onHandleSubmit(val)
     }
 
     return (

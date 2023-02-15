@@ -8,12 +8,30 @@ import { Routes, Route } from 'react-router-dom';
 import SearchResultDisplay from './Components/SearchResultDisplay';
 
 function App() {
+
+//   const [searchResultSrc, setSearchResultSrc] = useState([])
+
+//   const makeSearchableAPICall = async (val) => {
+//     const ingredientsUrl = 
+//     console.log(ingredientsUrl);
+//     const result = await fetch(ingredientsUrl)
+//     const json = await result.json();
+//     console.log(json);
+//     setSearchResultSrc(json);
+// }
+
+  const handleSubmitFromChild = (val) => {
+    console.log('This is from parent:' + val);
+    // makeSearchableAPICall(val);
+    // Here we receive "val"
+    // We want to make API call that will fetch search results
+}
   return (
     <div className="App">
       <nav>
         <Navbar bg="light">
           <Container>
-            <Navbar.Brand href="#home">
+            <Navbar.Brand href="/">
               <img
                 src={require("./logo.png")}
                 width= "100px"
@@ -43,8 +61,9 @@ function App() {
       </nav>
       <main>
         <Routes>
-          <Route path="/" element={<IngredientSearchForm/>} />
+          <Route path="/" element={<IngredientSearchForm onHandleSubmit={handleSubmitFromChild}/>} />
           <Route path="search" element={<SearchResultDisplay/>} />
+          {/* <Route path="search" element={<SearchResultDisplay resultSrc={searchResultSrc}/>} /> */}
         </Routes>
       </main>
       <nav>
