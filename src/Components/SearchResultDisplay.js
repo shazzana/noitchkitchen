@@ -6,12 +6,68 @@ function SearchResultDisplay(props) {
     console.log("Button clicked!");
   };
 
+  // TODO when mongodb atlas database is deployed
 
+//   const resultArr = props.resultSrc;
+
+//   const results = resultArr.map((el) => {
+//     // If el.histamine is true, show tick
+//     // If el.histamine is false or null, show dash
+
+//     const hasMechanism = true;
+
+//     return (
+//       <Table striped bordered responsive>
+//         <thead>
+//           <tr>
+//             <th>Ingredient</th>
+//             <th>Remarks</th>
+//             <th>Histamine</th>
+//             <th>Other Amines</th>
+//             <th>Liberator</th>
+//             <th>Blocker</th>
+//             <th>Compatibility</th>
+//             <th>Add to list</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td>{el.name}</td>
+//             <td>{el.remarks}</td>
+//             <td>
+//               {hasMechanism ? (
+//                 <p>
+//                   <i class="fa-solid fa-check"></i>
+//                 </p>
+//               ) : (
+//                 <p>-</p>
+//               )}
+//             </td>
+//             <td>
+//               <i class="fa-solid fa-check"></i>
+//             </td>
+//             <td>
+//               <i class="fa-solid fa-check"></i>
+//             </td>
+//             <td>
+//               <i class="fa-solid fa-check"></i>
+//             </td>
+//             <td>{el.compatibility}</td>
+//             <td>
+//               <i class="fa-solid fa-circle-plus" onClick={handleClick}></i>
+//             </td>
+//           </tr>
+//         </tbody>
+//       </Table>
+//     );
+//   });
 
   return (
     <div>
       <br />
       <h1>Search Results</h1>
+      {/* TODO when backend is deployed
+      <div>{results}</div> */}
       <Table striped bordered responsive>
         <thead>
           <tr>
