@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import './IngredientSearchForm.css';
 
-function IngredientSearchForm() {
+function IngredientSearchForm(props) {
+    const [formInput, setFormInput] = useState("");
+
+    
+    const handleInput = (event) => {
+        console.log(event.target.value)
+        setFormInput(event.target.value)
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const val = formInput; //Getting the value from the state
+        console.log('STATE: formInput:', val)
+        // props.onHandleSubmit(val)
+        // setFormInput("");
+    }
+
     return (
         <div className='Form'>
             <h1 className='Form-text'>Is it making you itch?</h1>
@@ -12,8 +29,15 @@ function IngredientSearchForm() {
             </p>
             <Form className="Form-container">
                 <Form.Group className="Form-field" controlId="formSearch">
-                    <Form.Control  type="search-field" placeholder="Search" />
+                    <Form.Control  
+                    value={formInput}
+                    onChange={handleInput}
+                    type="search-field" 
+                    placeholder="Search ingredient"
+                    />
                 </Form.Group>
+                <br/>
+                <Button variant="dark" onClick={handleSubmit}>Submit</Button>
             </Form>
         </div>
     )

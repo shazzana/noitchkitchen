@@ -2,11 +2,16 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 
 function SearchResultDisplay() {
+    
+    const handleClick = (event) => {
+        console.log("Button clicked!");
+    }
+
   return (
     <div>
       <br />
       <h1>Search Results</h1>
-      <Table striped bordered>
+      <Table striped bordered responsive>
         <thead>
           <tr>
             <th>Ingredient</th>
@@ -37,7 +42,7 @@ function SearchResultDisplay() {
             </td>
             <td>3</td>
             <td>
-              <i class="fa-solid fa-circle-plus"></i>
+                <i class="fa-solid fa-circle-plus" onClick={handleClick}></i>
             </td>
           </tr>
           <tr>
@@ -118,16 +123,3 @@ function SearchResultDisplay() {
 }
 
 export default SearchResultDisplay;
-
-// 1: Moderately compatible, minor symptoms, occasional 
-// consumption of small quantities is often tolerated 
-// 2: Incompatible, significant symptoms at usual intake
-// 3: Very poorly tolerated, severe symptoms
-// -: No general statement possible
-// ?: Insufficient or contradictory information
-
-// A: Other biogenic amines
-// L : Liberators of mast cell mediators
-// (=histamine liberators)
-// B: Blocker (=inhibitors) of diamine oxidase
-// or of other histamine degrading enzymes
