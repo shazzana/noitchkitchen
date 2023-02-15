@@ -2,7 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 
 function SearchResultDisplay() {
-    
+
     const handleClick = (event) => {
         console.log("Button clicked!");
     }

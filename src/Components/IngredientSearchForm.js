@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import './IngredientSearchForm.css';
 
+
 function IngredientSearchForm(props) {
     const [formInput, setFormInput] = useState("");
-
+    const navigate = useNavigate();
     
     const handleInput = (event) => {
         console.log(event.target.value)
@@ -18,7 +20,7 @@ function IngredientSearchForm(props) {
         const val = formInput; //Getting the value from the state
         console.log('STATE: formInput:', val)
         // props.onHandleSubmit(val)
-        // setFormInput("");
+        navigate('/search');
     }
 
     return (
