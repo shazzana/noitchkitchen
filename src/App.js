@@ -9,23 +9,26 @@ import { Routes, Route } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 
 function App() {
-    const [searchResultSrc, setSearchResultSrc] = useState([])
+  const [searchItemSrc, setSearchItemSrc] = useState("");
+  const [APIData, setAPIData] = useState([]);
 
-    const makeSearchableAPICall = async (val) => {
-      const ingredientsUrl = `https://awful-boot-crow.cyclic.app/ingredient`
-      console.log(ingredientsUrl);
-      const result = await fetch(ingredientsUrl)
-      const json = await result.json();
-      console.log(json);
-      setSearchResultSrc(json);
-  }
+  const makeAPICall = async (val) => {
+    const ingredientsUrl = `https://awful-boot-crow.cyclic.app/ingredient`
+    console.log(ingredientsUrl);
+    const result = await fetch(ingredientsUrl)
+    const json = await result.json();
+    console.log(json);
+    setAPIData(json);
+}
 
   const handleSubmitFromChild = (val) => {
-    console.log("This is from parent:" + val);
-    makeSearchableAPICall(val);
-    // Here we receive "val"
-    // We want to make API call that will fetch search results
+    console.log("Parent received:" + val);
+    setSearchItemSrc(val);
+    makeAPICall();
   };
+
+
+
   return (
     <div className="App">
       <nav>
@@ -65,7 +68,10 @@ function App() {
               <IngredientSearchForm onHandleSubmit={handleSubmitFromChild} />
             }
           />
-          <Route path="search" element={<SearchResultDisplay resultSrc={searchResultSrc}/>} />
+          <Route
+            path="search"
+            element={<SearchResultDisplay itemSrc={searchItemSrc} APIDataSrc={APIData} />}
+          />
         </Routes>
       </main>
       <nav>

@@ -18,7 +18,7 @@ function IngredientSearchForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault();
         const val = formInput; //Getting the value from the state
-        console.log('STATE: formInput:', val)
+        console.log('formInput(state) from child:', val)
         if (val !== "") {
         navigate('/search');
         } else {

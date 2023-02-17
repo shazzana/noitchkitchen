@@ -1,80 +1,82 @@
-import { React, useEffect, useState } from "react";
+import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 function SearchResultDisplay(props) {
-  const [search, setSearch] = useState("");
-
   const handleClick = (event) => {
     console.log("Button clicked!");
   };
 
-  const resultArr = props.resultSrc;
+  console.log(`Received props: ${props.itemSrc}`);
 
-  const results = resultArr
-    .filter((el) => {
-      return search.toLowerCase() === ""
-        ? el
-        : el.name.toLowerCase().includes(search);
-    })
-    .map((el) => {
-      let hasHistamine = el.histamine;
-      let hasOtherAmines = el.other_amines;
-      let hasLiberator = el.liberator;
-      let hasBlocker = el.blocker;
+  const searchItem = props.itemSrc;
+  const ingredientsArr = props.APIDataSrc;
 
-      return (
-        <tr key={el.id}>
-          <td>{el.name}</td>
-          <td>{el.remarks}</td>
-          <td>
-            {hasHistamine ? (
-              <p>
-                <i class="fa-solid fa-check"></i>
-              </p>
-            ) : (
-              <p>-</p>
-            )}
-          </td>
-          <td>
-            {hasOtherAmines ? (
-              <p>
-                <i class="fa-solid fa-check"></i>
-              </p>
-            ) : (
-              <p>-</p>
-            )}
-          </td>
-          <td>
-            {hasLiberator ? (
-              <p>
-                <i class="fa-solid fa-check"></i>
-              </p>
-            ) : (
-              <p>-</p>
-            )}
-          </td>
-          <td>
-            {hasBlocker ? (
-              <p>
-                <i class="fa-solid fa-check"></i>
-              </p>
-            ) : (
-              <p>-</p>
-            )}
-          </td>
-          <td>{el.compatibility}</td>
-          <td>
-            <i
-              class="fa-solid fa-circle-plus"
-              onClick={handleClick}
-              ingredient={el}
-            ></i>
-          </td>
-        </tr>
-      );
-    });
+  const searchResults = ingredientsArr.filter((item) => {
+    const searchItemLowerCase = searchItem.toLowerCase();
+    const ingredientName = item.name.toLowerCase();
+
+    return searchItemLowerCase && ingredientName.includes(searchItemLowerCase);
+  });
+
+  const searchResultsData = searchResults.map((el) => {
+    let hasHistamine = el.histamine;
+    let hasOtherAmines = el.other_amines;
+    let hasLiberator = el.liberator;
+    let hasBlocker = el.blocker;
+
+    return (
+      <tr key={el.id}>
+        <td>{el.name}</td>
+        <td>{el.remarks}</td>
+        <td>
+          {hasHistamine ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasOtherAmines ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasLiberator ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasBlocker ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>{el.compatibility}</td>
+        <td>
+          <i
+            class="fa-solid fa-circle-plus"
+            onClick={handleClick}
+            ingredient={el}
+          ></i>
+        </td>
+      </tr>
+    );
+  });
 
   return (
     <div>
@@ -132,7 +134,8 @@ function SearchResultDisplay(props) {
                     <Popover id="popover-positioned-bottom">
                       <Popover.Header as="h3">{`Factor affecting histamine metabolism`}</Popover.Header>
                       <Popover.Body>
-                      Presence of liberators of mast cell mediators (histamine liberators)
+                        Presence of liberators of mast cell mediators (histamine
+                        liberators)
                       </Popover.Body>
                     </Popover>
                   }
@@ -143,8 +146,7 @@ function SearchResultDisplay(props) {
             </th>
             <th>
               <p>
-              BLOCKER
-              {" "}
+                BLOCKER{" "}
                 <OverlayTrigger
                   placement="bottom"
                   delay={{ show: 250, hide: 400 }}
@@ -152,7 +154,8 @@ function SearchResultDisplay(props) {
                     <Popover id="popover-positioned-bottom">
                       <Popover.Header as="h3">{`Factor affecting histamine metabolism`}</Popover.Header>
                       <Popover.Body>
-                      Blocker (inhibitors) of diamine oxidase or of other histamine degrading enzymes
+                        Blocker (inhibitors) of diamine oxidase or of other
+                        histamine degrading enzymes
                       </Popover.Body>
                     </Popover>
                   }
@@ -160,7 +163,7 @@ function SearchResultDisplay(props) {
                   <i class="fa-solid fa-circle-info"></i>
                 </OverlayTrigger>
               </p>
-              </th>
+            </th>
             <th>
               <p>
                 COMPATIBILITY{" "}
@@ -197,9 +200,8 @@ function SearchResultDisplay(props) {
             <th>ADD TO LIST</th>
           </tr>
         </thead>
-        <tbody>{results}</tbody>
+        <tbody>{searchResultsData}</tbody>
       </Table>
-      <Table></Table>
     </div>
   );
 }
