@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import IngredientSearchForm from "./Components/IngredientSearchForm";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
 
@@ -45,8 +45,6 @@ function App() {
     navigate("/list");
   };
 
-  console.log(list);
-
   return (
     <div className="App">
       <nav>
@@ -58,15 +56,17 @@ function App() {
                 <i onClick={handleShow} class="fa-solid fa-bars fa-2xl"></i>
               </Navbar.Text>
             </Navbar.Collapse>
-            <Navbar.Brand href="/">
-              <img
-                src={require("./logo.png")}
-                width="100px"
-                height="50px"
-                className="logo"
-                alt="No-itch Kitchen logo"
-              />
-            </Navbar.Brand>
+            <Link to ="/">
+              <Navbar.Brand>
+                <img
+                  src={require("./logo.png")}
+                  width="100px"
+                  height="50px"
+                  className="logo"
+                  alt="No-itch Kitchen logo"
+                />
+              </Navbar.Brand>
+            </Link>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text style={{ marginLeft: "0.8rem" }}>
@@ -95,7 +95,14 @@ function App() {
           <h3>Recipes</h3>
           <br/>
           <br/>
-          <h3>Saved Ingredients</h3>
+          <Link to ="/">
+            <h3>Ingredient Search</h3>
+          </Link>
+          <br/>
+          <br/>
+          <Link to ="/list">
+            <h3>Saved Ingredients</h3>
+          </Link>
         </Offcanvas.Body>
       </Offcanvas>
       <main>
