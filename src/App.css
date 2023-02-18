@@ -38,3 +38,12 @@
     transform: rotate(360deg);
   }
 }
+
+.Offcanvas {
+  align-items: center;
+  font-family: 'League Spartan', sans-serif;
+}
+
+h3 {
+  align-items: center;
+}

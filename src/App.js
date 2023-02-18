@@ -1,9 +1,10 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "./logo.png";
 import "./App.css";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route } from "react-router-dom";
@@ -14,6 +15,10 @@ function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
   const [APIData, setAPIData] = useState([]);
   const [list, setList] = useState([]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +42,7 @@ function App() {
     const oldList = [...list];
     const newList = oldList.concat(el);
     setList(newList);
-    navigate('/list');
+    navigate("/list");
   };
 
   console.log(list);
@@ -47,6 +52,12 @@ function App() {
       <nav>
         <Navbar bg="light">
           <Container>
+            <Navbar.Collapse className="justify-content-start">
+              <Navbar.Text></Navbar.Text>
+              <Navbar.Text style={{ marginLeft: "0.8rem" }}>
+                <i onClick={handleShow} class="fa-solid fa-bars fa-2xl"></i>
+              </Navbar.Text>
+            </Navbar.Collapse>
             <Navbar.Brand href="/">
               <img
                 src={require("./logo.png")}
@@ -58,21 +69,35 @@ function App() {
             </Navbar.Brand>
             <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>SIGN IN</Navbar.Text>
               <Navbar.Text style={{ marginLeft: "0.8rem" }}>
-                <img
-                  src={require("./login.jpg")}
-                  width="25px"
-                  height="25px"
-                  className="login"
-                  alt="Login logo"
-                  margin="5px"
-                />
+                <i class="fa-solid fa-circle-user fa-2xl"></i>
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>
         </Navbar>
       </nav>
+      <Offcanvas show={show} onHide={handleClose} className="Offcanvas">
+        <Offcanvas.Header>
+          <Offcanvas.Title>
+            <img
+              src={require("./logo-circle.png")}
+              width="90px"
+              height="90px"
+              className="logo-circle"
+              alt="No-itch Kitchen circle logo"
+            />
+          </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body className="Offcanvas-body">
+          <h3>About</h3>
+          <br/>
+          <br/>
+          <h3>Recipes</h3>
+          <br/>
+          <br/>
+          <h3>Saved Ingredients</h3>
+        </Offcanvas.Body>
+      </Offcanvas>
       <main>
         <Routes>
           <Route
@@ -91,13 +116,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="list"
-            element={
-              <SavedIngredients
-                listSrc={list}/>
-            }
-          />
+          <Route path="list" element={<SavedIngredients listSrc={list} />} />
         </Routes>
       </main>
       <nav>
