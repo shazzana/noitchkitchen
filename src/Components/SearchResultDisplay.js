@@ -4,7 +4,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 function SearchResultDisplay(props) {
-  const handleClick = (event) => {
+  const handleAddToList = (event) => {
     console.log("Button clicked!");
   };
 
@@ -70,7 +70,7 @@ function SearchResultDisplay(props) {
         <td>
           <i
             class="fa-solid fa-circle-plus"
-            onClick={handleClick}
+            onClick={handleAddToList}
             ingredient={el}
           ></i>
         </td>

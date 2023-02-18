@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./logo.png";
 import "./App.css";
 import Container from "react-bootstrap/Container";
@@ -12,22 +12,21 @@ function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
   const [APIData, setAPIData] = useState([]);
 
-  const makeAPICall = async (val) => {
-    const ingredientsUrl = `https://awful-boot-crow.cyclic.app/ingredient`
+  useEffect(() => {
+    const ingredientsUrl = `https://awful-boot-crow.cyclic.app/ingredient`;
     console.log(ingredientsUrl);
-    const result = await fetch(ingredientsUrl)
-    const json = await result.json();
-    console.log(json);
-    setAPIData(json);
-}
+    fetch(ingredientsUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("API for title is successful", data);
+        setAPIData(data);
+      });
+  }, []);
 
   const handleSubmitFromChild = (val) => {
     console.log("Parent received:" + val);
     setSearchItemSrc(val);
-    makeAPICall();
   };
-
-
 
   return (
     <div className="App">
@@ -70,7 +69,12 @@ function App() {
           />
           <Route
             path="search"
-            element={<SearchResultDisplay itemSrc={searchItemSrc} APIDataSrc={APIData} />}
+            element={
+              <SearchResultDisplay
+                itemSrc={searchItemSrc}
+                APIDataSrc={APIData}
+              />
+            }
           />
         </Routes>
       </main>
