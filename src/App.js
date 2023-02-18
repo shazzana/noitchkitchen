@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import "./logo.png";
 import "./App.css";
 import Container from "react-bootstrap/Container";
@@ -7,10 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
+import SavedIngredients from "./Components/SavedIngredients";
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
   const [APIData, setAPIData] = useState([]);
+  const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ingredientsUrl = `https://awful-boot-crow.cyclic.app/ingredient`;
@@ -27,6 +31,16 @@ function App() {
     console.log("Parent received:" + val);
     setSearchItemSrc(val);
   };
+
+  const handleAddToList = (el) => {
+    console.log("Button clicked!");
+    const oldList = [...list];
+    const newList = oldList.concat(el);
+    setList(newList);
+    navigate('/list');
+  };
+
+  console.log(list);
 
   return (
     <div className="App">
@@ -73,7 +87,15 @@ function App() {
               <SearchResultDisplay
                 itemSrc={searchItemSrc}
                 APIDataSrc={APIData}
+                listItemSrc={handleAddToList}
               />
+            }
+          />
+          <Route
+            path="list"
+            element={
+              <SavedIngredients
+                listSrc={list}/>
             }
           />
         </Routes>

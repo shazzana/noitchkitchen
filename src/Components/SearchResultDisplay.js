@@ -1,12 +1,25 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
 function SearchResultDisplay(props) {
-  const handleAddToList = (event) => {
-    console.log("Button clicked!");
-  };
+  // const [list, setList] = useState([]);
+
+  // const addToList = (el) => {
+  //   console.log("Button clicked!");
+  //   const oldList = [...list];
+  //   const newList = oldList.concat(el);
+  //   setList(newList);
+  // };
+
+  // console.log(list);
+
+  // const removeFromList = (id) => {
+  //   const oldList = [...list];
+  //   const newList = oldList.filter((el)=>el.id !==id)
+  //   setList(newList);
+  // }
 
   console.log(`Received props: ${props.itemSrc}`);
 
@@ -25,6 +38,7 @@ function SearchResultDisplay(props) {
     let hasOtherAmines = el.other_amines;
     let hasLiberator = el.liberator;
     let hasBlocker = el.blocker;
+    const addToList = props.listItemSrc;
 
     return (
       <tr key={el.id}>
@@ -70,7 +84,7 @@ function SearchResultDisplay(props) {
         <td>
           <i
             class="fa-solid fa-circle-plus"
-            onClick={handleAddToList}
+            onClick={()=> addToList (el)}
             ingredient={el}
           ></i>
         </td>
