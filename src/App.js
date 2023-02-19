@@ -10,16 +10,14 @@ import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route, Link } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
+import Login from "./Components/Login"
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
   const [APIData, setAPIData] = useState([]);
   const [list, setList] = useState([]);
-  // const [show, setShow] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -140,7 +138,19 @@ function App() {
               />
             }
           />
-          <Route path="list" element={<SavedIngredients listSrc={list} />} />
+          <Route 
+            path="list" 
+            element={
+              <SavedIngredients 
+              listSrc={list} 
+              />} 
+          />
+          <Route
+            path="login"
+            element={
+                <Login/>
+            }
+          />
         </Routes>
       </main>
       <nav>

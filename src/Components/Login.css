@@ -1,0 +1,22 @@
+.Login-Container {
+    display: flex;
+    height: 100vh;
+}
+
+.Login-Image{
+    background-image: url('../Images/login-background.jpg');
+    flex: 1;
+    background-size:cover;
+    border: none;
+}
+
+.Login-Form {
+    flex: 1;
+    height: 100%;
+    padding: 5em;
+    text-align: left;
+}
+
+.Login-Form-Field {
+    width: 400px;
+}
