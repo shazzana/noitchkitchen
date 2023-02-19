@@ -45,5 +45,10 @@
 }
 
 h3 {
-  align-items: center;
+  text-align: center;
+}
+
+.Link {
+  text-decoration: none;
+  color: black;
 }

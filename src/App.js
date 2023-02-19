@@ -15,10 +15,11 @@ function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
   const [APIData, setAPIData] = useState([]);
   const [list, setList] = useState([]);
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,6 +46,13 @@ function App() {
     navigate("/list");
   };
 
+  
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
+  }
+
+  const handleClose = () => setMenuOpen(false)
+
   return (
     <div className="App">
       <nav>
@@ -53,10 +61,10 @@ function App() {
             <Navbar.Collapse className="justify-content-start">
               <Navbar.Text></Navbar.Text>
               <Navbar.Text style={{ marginLeft: "0.8rem" }}>
-                <i onClick={handleShow} class="fa-solid fa-bars fa-2xl"></i>
+                <i onClick={toggleMenu} class="fa-solid fa-bars fa-2xl"></i>
               </Navbar.Text>
             </Navbar.Collapse>
-            <Link to ="/">
+            <Link to="/">
               <Navbar.Brand>
                 <img
                   src={require("./logo.png")}
@@ -67,44 +75,53 @@ function App() {
                 />
               </Navbar.Brand>
             </Link>
-            <Navbar.Toggle />
+            <Navbar.Toggle 
+              onClick={toggleMenu}
+            />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text style={{ marginLeft: "0.8rem" }}>
                 <i class="fa-solid fa-circle-user fa-2xl"></i>
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>
+          <Offcanvas 
+            show={menuOpen} 
+            onHide={handleClose} 
+            className="Offcanvas" 
+            restoreFocus={false}>
+            <Offcanvas.Header>
+              <Offcanvas.Title>
+              <Link to="/" onClick={toggleMenu}>
+                <img
+                  src={require("./logo-circle.png")}
+                  width="90px"
+                  height="90px"
+                  className="logo-circle"
+                  alt="No-itch Kitchen circle logo"
+                />
+              </Link>
+              </Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body className="Offcanvas-body">
+              <br />
+              <h3>About</h3>
+              <br />
+              <br />
+              <h3>Recipes</h3>
+              <br />
+              <br />
+              <Link to="/" onClick={toggleMenu} className="Link">
+                <h3>Ingredient Search</h3>
+              </Link>
+              <br />
+              <br />
+              <Link to="/list" onClick={toggleMenu} className="Link">
+                <h3>Saved Ingredients</h3>
+              </Link>
+            </Offcanvas.Body>
+          </Offcanvas>
         </Navbar>
       </nav>
-      <Offcanvas show={show} onHide={handleClose} className="Offcanvas">
-        <Offcanvas.Header>
-          <Offcanvas.Title>
-            <img
-              src={require("./logo-circle.png")}
-              width="90px"
-              height="90px"
-              className="logo-circle"
-              alt="No-itch Kitchen circle logo"
-            />
-          </Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body className="Offcanvas-body">
-          <h3>About</h3>
-          <br/>
-          <br/>
-          <h3>Recipes</h3>
-          <br/>
-          <br/>
-          <Link to ="/">
-            <h3>Ingredient Search</h3>
-          </Link>
-          <br/>
-          <br/>
-          <Link to ="/list">
-            <h3>Saved Ingredients</h3>
-          </Link>
-        </Offcanvas.Body>
-      </Offcanvas>
       <main>
         <Routes>
           <Route
