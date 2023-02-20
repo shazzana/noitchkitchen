@@ -10,7 +10,7 @@ import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route, Link } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
-import Login from "./Components/Login"
+import Register from "./Components/Register"
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
@@ -146,9 +146,9 @@ function App() {
               />} 
           />
           <Route
-            path="login"
+            path="register"
             element={
-                <Login/>
+                <Register/>
             }
           />
         </Routes>
