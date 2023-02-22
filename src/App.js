@@ -11,6 +11,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
 import Register from "./Components/Register"
+import Login from "./Components/Login"
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
@@ -78,7 +79,9 @@ function App() {
             />
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text style={{ marginLeft: "0.8rem" }}>
+                <Link to="/register">
                 <i class="fa-solid fa-circle-user fa-2xl"></i>
+                </Link>
               </Navbar.Text>
             </Navbar.Collapse>
           </Container>
@@ -149,6 +152,12 @@ function App() {
             path="register"
             element={
                 <Register/>
+            }
+          />
+          <Route
+            path="login"
+            element={
+                <Login/>
             }
           />
         </Routes>

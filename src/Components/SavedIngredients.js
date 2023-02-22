@@ -73,6 +73,7 @@ function SavedIngredients(props) {
             <Form.Select
               className="search-dropdown"
               onChange={handleSelectChange}
+              value={cat}
               aria-label="Default select example"
             >
               <option>Choose your rating</option>

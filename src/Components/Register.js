@@ -109,16 +109,16 @@ const Register = () => {
 
   return (
     <div className="Login-Container">
-      <img className="Login-Image" />
+      <img className="Login-Image" alt="Variety of produce" />
       {success ? (
         <section className="Login-Form">
           <h1>Success!</h1>
           <p>
-            <a href="/Login">Sign In</a>
+            <a href="/login">Sign In</a>
           </p>
         </section>
       ) : (
-        <section>
+        <section className="Login-Form">
           <p
             ref={errRef}
             className={errMsg ? "errmsg" : "offscreen"}
@@ -127,19 +127,19 @@ const Register = () => {
             {errMsg}
           </p>
           <Form className="Login-Form" onSubmit={handleSubmit}>
-            <h2>Login or create account</h2>
+            <h2>Create an account</h2>
             <br />
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>
                 Email address
-                {/* <FontAwesomeIcon
+                <FontAwesomeIcon
                   icon={faCheck}
                   className={validName ? "valid" : "hide"}
                 />
                 <FontAwesomeIcon
                   icon={faTimes}
                   className={validName || !user ? "hide" : "invalid"}
-                /> */}
+                />
               </Form.Label>
               <Form.Control
                 type="email"
@@ -155,7 +155,6 @@ const Register = () => {
                 onFocus={() => setUserFocus(true)}
                 onBlur={() => setUserFocus(false)}
               />
-              <br />
               <p
                 id="uidnote"
                 className={
@@ -173,14 +172,14 @@ const Register = () => {
             >
               <Form.Label>
                 Password
-                {/* <FontAwesomeIcon
+                <FontAwesomeIcon
                   icon={faCheck}
                   className={validPwd ? "valid" : "hide"}
                 />
                 <FontAwesomeIcon
                   icon={faTimes}
                   className={validPwd || !pwd ? "hide" : "invalid"}
-                /> */}
+                />
               </Form.Label>
               <Form.Control
                 type="password"
@@ -197,7 +196,6 @@ const Register = () => {
                 id="pwdnote"
                 className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
               >
-                <br/>
                 <FontAwesomeIcon icon={faInfoCircle} /> 8 to 24 characters
                 <br />
                 Please include uppercase and lowercase letters, a number and a
@@ -211,20 +209,21 @@ const Register = () => {
                 <span aria-label="percent">%</span>
               </p>
             </Form.Group>
+            <br />
             <Form.Group
-              className="Confirm-Password-Field"
+              className="Login-Form-Field"
               controlId="confirmPassword"
             >
               <Form.Label>
                 Confirm password
-                {/* <FontAwesomeIcon
+                <FontAwesomeIcon
                   icon={faCheck}
                   className={validMatch && matchPwd ? "valid" : "hide"}
                 />
                 <FontAwesomeIcon
                   icon={faTimes}
                   className={validMatch || !matchPwd ? "hide" : "invalid"}
-                /> */}
+                />
               </Form.Label>
               <Form.Control
                 type="password"
@@ -243,11 +242,10 @@ const Register = () => {
                   matchFocus && !validMatch ? "instructions" : "offscreen"
                 }
               >
-                <br/>
-                <FontAwesomeIcon icon={faInfoCircle} />{' '}
-                Passwords must match
+                <FontAwesomeIcon icon={faInfoCircle} /> Passwords must match
               </p>
             </Form.Group>
+            <br />
             <Button
               variant="dark"
               type="submit"
@@ -255,6 +253,11 @@ const Register = () => {
             >
               Sign Up
             </Button>
+            <br/>
+            <br/>
+            <h6> 
+              <a href="/login">I have an account</a>
+            </h6>
           </Form>
         </section>
       )}
