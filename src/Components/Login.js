@@ -3,6 +3,7 @@ import { useLocalStorage } from "@har4s/use-local-storage";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Login.css";
+import LoginBackground from '../Images/login-background.jpg';
 
 const Login = () => {
   const userRef = useRef();
@@ -68,7 +69,7 @@ const Login = () => {
 
   return (
     <div className="Login-Container">
-      <img className="Login-Image" alt="Variety of produce" />
+      <img src={LoginBackground} className="Login-Image"/>
       {success ? (
         <section className="Login-Form">
           <h1>You are logged in!</h1>

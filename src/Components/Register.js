@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "./Register.css";
+import LoginBackground from '../Images/login-background.jpg';
 
 const USER_REGEX =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -109,7 +110,7 @@ const Register = () => {
 
   return (
     <div className="Login-Container">
-      <img className="Login-Image" alt="Variety of produce" />
+      <img src={LoginBackground} className="Login-Image"/>
       {success ? (
         <section className="Login-Form">
           <h1>Success!</h1>
@@ -129,7 +130,7 @@ const Register = () => {
           <Form className="Login-Form" onSubmit={handleSubmit}>
             <h2>Create an account</h2>
             <br />
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="Login-Form-Field" controlId="formBasicEmail">
               <Form.Label>
                 Email address
                 <FontAwesomeIcon
@@ -143,8 +144,7 @@ const Register = () => {
               </Form.Label>
               <Form.Control
                 type="email"
-                id="email"
-                className="Login-Form-Field"
+                id="email"               
                 ref={userRef}
                 autoComplete="off"
                 onChange={(e) => setUser(e.target.value)}

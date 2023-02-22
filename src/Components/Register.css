@@ -4,7 +4,7 @@
 }
 
 .Login-Image{
-    background-image: url('../Images/login-background.jpg');
+    /* background-image: url('../Images/login-background.jpg'); */
     flex: 1;
     background-size:cover;
     border: none;
