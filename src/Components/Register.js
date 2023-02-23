@@ -165,7 +165,7 @@ const Register = () => {
                 email address, e.g. <em>name@mail.com</em>
               </p>
             </Form.Group>
-
+            <br/>
             <Form.Group
               className="Login-Form-Field"
               controlId="formBasicPassword"

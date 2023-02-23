@@ -1,0 +1,33 @@
+.About1 {
+    width: 300px;
+}
+
+.About-Container {
+    display: flex;
+    margin: 50px;
+    text-align: left;
+    align-content: flex-start;
+    justify-content: space-evenly;
+}
+
+.Description-Container {
+    display: block;
+    margin: 20px;
+}
+
+.Description-Header {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.Description-Body {
+    margin: 20px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+.Logo {
+    width: 90px;
+    margin: 20px;
+}

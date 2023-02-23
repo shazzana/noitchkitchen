@@ -12,6 +12,7 @@ import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
 import Register from "./Components/Register"
 import Login from "./Components/Login"
+import About from "./Components/About"
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
@@ -105,7 +106,9 @@ function App() {
             </Offcanvas.Header>
             <Offcanvas.Body className="Offcanvas-body">
               <br />
-              <h3>About</h3>
+              <Link to="/about" onClick={toggleMenu} className="Link">
+                <h3>About</h3>
+              </Link>
               <br />
               <br />
               <h3>Recipes</h3>
@@ -158,6 +161,12 @@ function App() {
             path="login"
             element={
                 <Login/>
+            }
+          />
+          <Route
+            path="about"
+            element={
+                <About/>
             }
           />
         </Routes>
