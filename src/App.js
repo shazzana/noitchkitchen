@@ -10,9 +10,10 @@ import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route, Link } from "react-router-dom";
 import SearchResultDisplay from "./Components/SearchResultDisplay";
 import SavedIngredients from "./Components/SavedIngredients";
-import Register from "./Components/Register"
-import Login from "./Components/Login"
-import About from "./Components/About"
+import Register from "./Components/Register";
+import Login from "./Components/Login";
+import About from "./Components/About";
+import Recipes from "./Components/Recipes";
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
@@ -28,7 +29,7 @@ function App() {
     fetch(ingredientsUrl)
       .then((res) => res.json())
       .then((data) => {
-        console.log("API for title is successful", data);
+        console.log("API for ingredients is successful", data);
         setAPIData(data);
       });
   }, []);
@@ -111,7 +112,9 @@ function App() {
               </Link>
               <br />
               <br />
-              <h3>Recipes</h3>
+              <Link to="/recipes" onClick={toggleMenu} className="Link">
+                <h3>Recipes</h3>
+              </Link>
               <br />
               <br />
               <Link to="/" onClick={toggleMenu} className="Link">
@@ -167,6 +170,12 @@ function App() {
             path="about"
             element={
                 <About/>
+            }
+          />
+          <Route
+            path="recipes"
+            element={
+                <Recipes/>
             }
           />
         </Routes>
