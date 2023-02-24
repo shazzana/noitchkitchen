@@ -75,7 +75,7 @@ const Login = () => {
           <h1>You are logged in!</h1>
           <br />
           <p>
-            <a href="/Display">Click here to proceed</a>
+            <a href="/search">Click here to proceed</a>
           </p>
         </section>
       ) : (

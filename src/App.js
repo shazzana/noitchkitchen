@@ -6,14 +6,14 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import "bootstrap/dist/css/bootstrap.min.css";
-import IngredientSearchForm from "./Components/IngredientSearchForm";
 import { Routes, Route, Link } from "react-router-dom";
-import SearchResultDisplay from "./Components/SearchResultDisplay";
+import IngredientSearch from "./Components/IngredientSearch";
 import SavedIngredients from "./Components/SavedIngredients";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import About from "./Components/About";
 import Recipes from "./Components/Recipes";
+import Home from "./Components/Home";
 
 function App() {
   const [searchItemSrc, setSearchItemSrc] = useState("");
@@ -41,10 +41,10 @@ function App() {
 
   const handleAddToList = (el) => {
     console.log("Button clicked!");
+    alert ('Ingredient saved!');
     const oldList = [...list];
     const newList = oldList.concat(el);
     setList(newList);
-    navigate("/list");
   };
 
   
@@ -117,7 +117,7 @@ function App() {
               </Link>
               <br />
               <br />
-              <Link to="/" onClick={toggleMenu} className="Link">
+              <Link to="/register" onClick={toggleMenu} className="Link">
                 <h3>Ingredient Search</h3>
               </Link>
               <br />
@@ -134,13 +134,13 @@ function App() {
           <Route
             path="/"
             element={
-              <IngredientSearchForm onHandleSubmit={handleSubmitFromChild} />
+                <Home/>
             }
           />
           <Route
             path="search"
             element={
-              <SearchResultDisplay
+              <IngredientSearch
                 itemSrc={searchItemSrc}
                 APIDataSrc={APIData}
                 listItemSrc={handleAddToList}

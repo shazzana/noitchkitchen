@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom';
 
-import './IngredientSearchForm.css';
+import './Home.css';
 
 
-function IngredientSearchForm(props) {
+function Home(props) {
     const [formInput, setFormInput] = useState("");
     const navigate = useNavigate();
     
@@ -16,15 +17,16 @@ function IngredientSearchForm(props) {
     }
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const val = formInput; //Getting the value from the state
-        console.log('formInput(state) from child:', val)
-        if (val !== "") {
-        navigate('/search');
-        } else {
-            alert ("Please type in an ingredient")
-        }
-        props.onHandleSubmit(val)
+        // event.preventDefault();
+        // const val = formInput; //Getting the value from the state
+        // console.log('formInput(state) from child:', val)
+        // if (val !== "") {
+        // navigate('/search');
+        // } else {
+        //     alert ("Please type in an ingredient")
+        // }
+        // props.onHandleSubmit(val)
+        console.log('Button clicked!')
     }
 
     return (
@@ -33,7 +35,7 @@ function IngredientSearchForm(props) {
             <p className='Form-para'>Some food ingredients could trigger histamine release, causing you to itch.
                 Search an ingredient to find out more.
             </p>
-            <Form className="Form-container">
+            {/* <Form className="Form-container">
                 <Form.Group className="Form-field" controlId="formSearch">
                     <Form.Control  
                     value={formInput}
@@ -44,9 +46,10 @@ function IngredientSearchForm(props) {
                 </Form.Group>
                 <br/>
                 <Button variant="dark" onClick={handleSubmit}>Submit</Button>
-            </Form>
+            </Form> */}
+            <Button variant="dark" href="/register">Search ingredients</Button>
         </div>
     )
 }
 
-export default IngredientSearchForm;
+export default Home;

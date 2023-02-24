@@ -1,31 +1,58 @@
+import { useState } from "react";
 import Table from "react-bootstrap/Table";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Modal from 'react-bootstrap/Modal';
 
-function SavedIngredients(props) {
-  const [cat, setCat] = useState("Choose your rating");
-  // const [value, setValue] = useState("")
+function IngredientSearch(props) {
+  const [formInput, setFormInput] = useState("");
 
-  const list = props.listSrc;
+//   const handleInput = (event) => {
+//     console.log(event.target.value)
+//     setFormInput(event.target.value)
+// }
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+  // const [list, setList] = useState([]);
+
+  // const addToList = (el) => {
+  //   console.log("Button clicked!");
+  //   const oldList = [...list];
+  //   const newList = oldList.concat(el);
+  //   setList(newList);
+  // };
+
   // console.log(list);
 
-  const listData = list.map((el) => {
+  // const removeFromList = (id) => {
+  //   const oldList = [...list];
+  //   const newList = oldList.filter((el)=>el.id !==id)
+  //   setList(newList);
+  // }
+
+  // const searchItem = props.itemSrc;
+  const ingredientsArr = props.APIDataSrc;
+
+
+  // const searchResults = ingredientsArr.filter((item) => {
+  //   const searchItemLowerCase = formInput.toLowerCase();
+  //   const ingredientName = item.name.toLowerCase();
+
+  //   return searchItemLowerCase && ingredientName.includes(searchItemLowerCase);
+  // });
+
+  // const searchResultsData = 
+  const viewAllIngredients = ingredientsArr.map((el) => {
     let hasHistamine = el.histamine;
     let hasOtherAmines = el.other_amines;
     let hasLiberator = el.liberator;
     let hasBlocker = el.blocker;
-
-    const handleSelectChange = (e) => {
-      setCat(e.target.value);
-      // console.log(e.target.value);
-      // console.log(el.your_compatibility);
-    };
-
-    // el['your_compatibility'] = cat;
-    // console.log(el.your_compatibility);
+    const addToList = props.listItemSrc;
 
     return (
       <tr key={el.id}>
@@ -69,24 +96,85 @@ function SavedIngredients(props) {
         </td>
         <td>{el.compatibility}</td>
         <td>
-          <Form className="d-flex">
-            <Form.Select
-              className="search-dropdown"
-              onChange={handleSelectChange}
-              aria-label="Default select example"
-            >
-              <option>Choose your rating</option>
-              <option
-                value="0"
-                // onClick={handleSelectValue}
-              >
-                0
-              </option>
-              <option value={cat}>1</option>
-              <option value={cat}>2</option>
-              <option value={cat}>3</option>
-            </Form.Select>
-          </Form>
+          <i
+            class="fa-solid fa-circle-plus"
+            onClick={
+              () => 
+              addToList(el)
+            }
+            ingredient={el}
+          ></i>
+        </td>
+      </tr>
+    );
+  });
+
+  console.log(formInput)
+  const allIngredients = ingredientsArr
+  .filter((item) => {
+      const searchItemLowerCase = formInput.toLowerCase();
+      const ingredientName = item.name.toLowerCase();
+
+      return searchItemLowerCase === ''
+      ? item 
+      : ingredientName.includes(searchItemLowerCase)
+  
+      // return searchItemLowerCase && ingredientName
+    })
+  .map((el) => {
+    let hasHistamine = el.histamine;
+    let hasOtherAmines = el.other_amines;
+    let hasLiberator = el.liberator;
+    let hasBlocker = el.blocker;
+    const addToList = props.listItemSrc;
+
+    return (
+      <tr key={el.id}>
+        <td>{el.name}</td>
+        <td>{el.remarks}</td>
+        <td>
+          {hasHistamine ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasOtherAmines ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasLiberator ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>
+          {hasBlocker ? (
+            <p>
+              <i class="fa-solid fa-check"></i>
+            </p>
+          ) : (
+            <p>-</p>
+          )}
+        </td>
+        <td>{el.compatibility}</td>
+        <td>
+          <i
+            class="fa-solid fa-circle-plus"
+            onClick={() => addToList(el)}
+            ingredient={el}
+          ></i>
         </td>
       </tr>
     );
@@ -95,8 +183,20 @@ function SavedIngredients(props) {
   return (
     <div>
       <br />
-      <h1>Saved Ingredients</h1>
-      <br />
+      <h1>Ingredient Search</h1>
+      <Form className="Form-container">
+        <Form.Group className="Form-field" controlId="formSearch">
+          <Form.Control
+            // value={formInput}
+            // onChange={handleInput}
+            onChange={(e) => setFormInput(e.target.value)}
+            type="search-field"
+            placeholder="Search ingredient"
+          />
+        </Form.Group>
+        <br />
+      </Form>
+      {/* TODO when backend is deployed */}
       <Container>
         <Table striped bordered responsive>
           <thead>
@@ -212,46 +312,14 @@ function SavedIngredients(props) {
                   </OverlayTrigger>
                 </p>
               </th>
-              <th>
-                <p>
-                  YOUR COMPATIBILITY{" "}
-                  <OverlayTrigger
-                    placement="bottom"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={
-                      <Popover id="popover-positioned-bottom">
-                        <Popover.Header as="h3">{`Histamine Compatibility`}</Popover.Header>
-                        <Popover.Body>
-                          <strong>0: </strong>Well tolerated, no symptoms
-                          expected at usual intake
-                          <br />
-                          <br />
-                          <strong>1: </strong>Moderately compatible, minor
-                          symptoms, occasional consumption of small quantities
-                          is often tolerated
-                          <br />
-                          <br />
-                          <strong>2: </strong>Incompatible, significant symptoms
-                          at usual intake
-                          <br />
-                          <br />
-                          <strong>3: </strong>Very poorly tolerated, severe
-                          symptoms
-                        </Popover.Body>
-                      </Popover>
-                    }
-                  >
-                    <i class="fa-solid fa-circle-info"></i>
-                  </OverlayTrigger>
-                </p>
-              </th>
+              <th>ADD TO LIST</th>
             </tr>
           </thead>
-          <tbody>{listData}</tbody>
+          <tbody>{allIngredients}</tbody>
         </Table>
       </Container>
     </div>
   );
 }
 
-export default SavedIngredients;
+export default IngredientSearch;
