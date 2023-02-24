@@ -72,7 +72,7 @@ const Login = () => {
       <img src={LoginBackground} className="Login-Image"/>
       {success ? (
         <section className="Login-Form">
-          <h1>You are logged in!</h1>
+          <h1 className="Login-Header">You are logged in!</h1>
           <br />
           <p>
             <a href="/search">Click here to proceed</a>

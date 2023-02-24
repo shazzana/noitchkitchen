@@ -113,7 +113,7 @@ const Register = () => {
       <img src={LoginBackground} className="Login-Image"/>
       {success ? (
         <section className="Login-Form">
-          <h1>Success!</h1>
+          <h1 className="Login-Header">Success!</h1>
           <p>
             <a href="/login">Sign In</a>
           </p>
