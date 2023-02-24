@@ -4,8 +4,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Modal from 'react-bootstrap/Modal';
+import './IngredientSearch.css';
 
 function IngredientSearch(props) {
   const [formInput, setFormInput] = useState("");
@@ -47,67 +46,6 @@ function IngredientSearch(props) {
   // });
 
   // const searchResultsData = 
-  const viewAllIngredients = ingredientsArr.map((el) => {
-    let hasHistamine = el.histamine;
-    let hasOtherAmines = el.other_amines;
-    let hasLiberator = el.liberator;
-    let hasBlocker = el.blocker;
-    const addToList = props.listItemSrc;
-
-    return (
-      <tr key={el.id}>
-        <td>{el.name}</td>
-        <td>{el.remarks}</td>
-        <td>
-          {hasHistamine ? (
-            <p>
-              <i class="fa-solid fa-check"></i>
-            </p>
-          ) : (
-            <p>-</p>
-          )}
-        </td>
-        <td>
-          {hasOtherAmines ? (
-            <p>
-              <i class="fa-solid fa-check"></i>
-            </p>
-          ) : (
-            <p>-</p>
-          )}
-        </td>
-        <td>
-          {hasLiberator ? (
-            <p>
-              <i class="fa-solid fa-check"></i>
-            </p>
-          ) : (
-            <p>-</p>
-          )}
-        </td>
-        <td>
-          {hasBlocker ? (
-            <p>
-              <i class="fa-solid fa-check"></i>
-            </p>
-          ) : (
-            <p>-</p>
-          )}
-        </td>
-        <td>{el.compatibility}</td>
-        <td>
-          <i
-            class="fa-solid fa-circle-plus"
-            onClick={
-              () => 
-              addToList(el)
-            }
-            ingredient={el}
-          ></i>
-        </td>
-      </tr>
-    );
-  });
 
   console.log(formInput)
   const allIngredients = ingredientsArr
@@ -182,23 +120,24 @@ function IngredientSearch(props) {
 
   return (
     <div>
-      <br />
-      <h1>Ingredient Search</h1>
-      <Form className="Form-container">
-        <Form.Group className="Form-field" controlId="formSearch">
-          <Form.Control
-            // value={formInput}
-            // onChange={handleInput}
-            onChange={(e) => setFormInput(e.target.value)}
-            type="search-field"
-            placeholder="Search ingredient"
-          />
-        </Form.Group>
-        <br />
+      <div className="Header">
+        <h1>Ingredient Search</h1>
+        <Form className="Form-container">
+          <Form.Group className="Form-field" controlId="formSearch">
+            <Form.Control
+              // value={formInput}
+              // onChange={handleInput}
+              onChange={(e) => setFormInput(e.target.value)}
+              type="search-field"
+              placeholder="Search ingredient"
+            />
+          </Form.Group>
+          <br />
       </Form>
+      </div>
       {/* TODO when backend is deployed */}
-      <Container>
-        <Table striped bordered responsive>
+      <Container className="Ingredient-Table">
+        <Table striped bordered responsive >
           <thead>
             <tr>
               <th>INGREDIENT{""}</th>

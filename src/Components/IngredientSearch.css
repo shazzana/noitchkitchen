@@ -1,0 +1,14 @@
+.Header {
+    background-image: url("../Images/search-background.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+h1 {
+    padding: 20px 0 0 0;
+    color: white;
+}
+
+.Ingredient-Table {
+    padding: 20px 0 0 0;
+}

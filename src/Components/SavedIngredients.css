@@ -1,0 +1,14 @@
+.List-Header {
+    background-image: url("../Images/saved-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+h1 {
+    padding: 20px 0 0 0;
+    color: white;
+}
+
+.Ingredient-Table {
+    padding: 20px 0 0 0;
+}

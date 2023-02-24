@@ -4,6 +4,7 @@ import Popover from "react-bootstrap/Popover";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
+import "./SavedIngredients.css";
 
 function SavedIngredients(props) {
   const [cat, setCat] = useState("Choose your rating");
@@ -94,10 +95,11 @@ function SavedIngredients(props) {
 
   return (
     <div>
-      <br />
-      <h1>Saved Ingredients</h1>
-      <br />
-      <Container>
+      <div className="List-Header">
+        <h1>Saved Ingredients</h1>
+        <br />
+      </div>
+      <Container className="Ingredient-Table">
         <Table striped bordered responsive>
           <thead>
             <tr>

@@ -36,7 +36,7 @@ const Recipes = () => {
     return (
         <div>
             <br />
-            <h1>Recipes</h1>
+            <h1 className="Recipe-Header">Recipes</h1>
             <Container className="Container" fluid="true">
                 
                 
